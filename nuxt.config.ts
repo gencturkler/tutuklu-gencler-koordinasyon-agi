@@ -13,9 +13,6 @@ export default defineNuxtConfig({
   css: ['~/assets/main.css'],
   future: { compatibilityVersion: 4 },
   compatibilityDate: '2025-04-02',
-  hub: {
-    database: true
-  },
   // Development config
   eslint: {
     config: {

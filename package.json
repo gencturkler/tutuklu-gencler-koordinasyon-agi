@@ -5,6 +5,8 @@
     "build": "nuxi build",
     "preview": "npx nuxthub preview",
     "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
     "lint": "eslint .",
     "postinstall": "nuxt prepare"
   },
