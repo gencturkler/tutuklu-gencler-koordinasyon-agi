@@ -10,13 +10,17 @@ export default eventHandler(async (event) => {
   })
   const { user } = await requireUserSession(event)
 
-  // List todos for the current user
-  const todo = await useDB().update(tables.todos).set({
-    completed
-  }).where(and(
-    eq(tables.todos.id, id),
-    eq(tables.todos.userId, user.id)
-  )).returning().get()
+  // Update todo for the current user
+  const [todo] = await useDB()
+    .update(tables.todos)
+    .set({
+      completed
+    })
+    .where(and(
+      eq(tables.todos.id, id),
+      eq(tables.todos.userId, user.id)
+    ))
+    .returning()
 
   return todo
 })

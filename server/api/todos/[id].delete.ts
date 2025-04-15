@@ -7,11 +7,14 @@ export default eventHandler(async (event) => {
   })
   const { user } = await requireUserSession(event)
 
-  // List todos for the current user
-  const deletedTodo = await useDB().delete(tables.todos).where(and(
-    eq(tables.todos.id, id),
-    eq(tables.todos.userId, user.id)
-  )).returning().get()
+  // Delete todo for the current user
+  const [deletedTodo] = await useDB()
+    .delete(tables.todos)
+    .where(and(
+      eq(tables.todos.id, id),
+      eq(tables.todos.userId, user.id)
+    ))
+    .returning()
 
   if (!deletedTodo) {
     throw createError({

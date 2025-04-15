@@ -1,4 +1,5 @@
 import { useValidatedBody, z } from 'h3-zod'
+import { useDB, tables } from '~~/server/utils/db'
 
 export default eventHandler(async (event) => {
   const { title } = await useValidatedBody(event, {
@@ -7,11 +8,14 @@ export default eventHandler(async (event) => {
   const { user } = await requireUserSession(event)
 
   // Insert todo for the current user
-  const todo = await useDB().insert(tables.todos).values({
-    userId: user.id,
-    title,
-    createdAt: new Date()
-  }).returning().get()
+  const [todo] = await useDB()
+    .insert(tables.todos)
+    .values({
+      userId: user.id,
+      title,
+      createdAt: new Date()
+    })
+    .returning()
 
   return todo
 })
