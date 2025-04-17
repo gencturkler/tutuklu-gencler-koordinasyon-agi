@@ -10,3 +10,4 @@ export function useDB() {
 }
 
 export type Todo = typeof tables.todos.$inferSelect
+export type User = typeof tables.users.$inferSelect

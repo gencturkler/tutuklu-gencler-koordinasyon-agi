@@ -68,11 +68,11 @@ const items = [
           </h3>
           <UButton
             v-if="!loggedIn"
-            to="/api/auth/github"
-            icon="i-simple-icons-github"
-            label="Login with GitHub"
+            to="/api/auth/google"
+            icon="i-simple-icons-google"
+            label="Login with Google"
             color="neutral"
-            size="xs"
+            size="sm"
             external
           />
           <div
@@ -96,11 +96,10 @@ const items = [
                 trailing-icon="i-lucide-chevron-down"
               >
                 <UAvatar
-                  :src="`https://github.com/${user.login}.png`"
-                  :alt="user.login"
+                  :alt="user.name"
                   size="3xs"
                 />
-                {{ user.login }}
+                {{ user.name }}
               </UButton>
             </UDropdownMenu>
           </div>
