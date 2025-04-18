@@ -16,6 +16,9 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       tasks: true
+    },
+    externals: {
+      inline: ['pg-native']
     }
   },
   // Development config
