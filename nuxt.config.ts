@@ -19,6 +19,10 @@ export default defineNuxtConfig({
     },
     externals: {
       inline: ['pg-native']
+    },
+    preset: 'cloudflare-pages',
+    rollupConfig: {
+      external: ['pg-native']
     }
   },
   // Development config
