@@ -1,84 +1,94 @@
-# Manage your Todos with Atidone ☑️
+# Tutuklu Gençler Koordinasyon Ağı 🌟
 
-A demonstration using [Nuxt](https://nuxt.com) with server-side rendering on the edge, authentication and database querying using [Cloudflare D1](https://developers.cloudflare.com/d1/) with [Drizzle ORM](https://orm.drizzle.team/).
+Tutuklu gençlerin ihtiyaçları ile destekçileri eşleştiren, süreçleri yöneten ve koordine eden bir web uygulaması.
 
-[![Deploy to NuxtHub](https://hub.nuxt.com/button.svg)](https://admin.hub.nuxt.com/new?template=todos)
+## Özellikler
 
-## Features
+- [Nuxt 3](https://nuxt.com) ile geliştirilmiş modern web uygulaması
+- [Drizzle ORM](https://orm.drizzle.team/) ile veritabanı yönetimi
+- [PostgreSQL](https://www.postgresql.org/) veritabanı desteği
+- [Nuxt UI](https://ui.nuxt.com) ile modern kullanıcı arayüzü
+- Rol tabanlı yetkilendirme sistemi
+- Gerçek zamanlı bildirim sistemi
+- Dinamik form yapısı
+- Süreç takip ve yönetim sistemi
 
-- [Server-Side Rendering on the Edge](https://nuxt.com/blog/nuxt-on-the-edge)
-- Authentication backed-in using [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils)
-- Leverage [Cloudflare D1](https://developers.cloudflare.com/d1/) as database and [drizzle ORM](https://orm.drizzle.team/) using [`hubDatabase()`](https://hub.nuxt.com/docs/storage/database)
-- [Automatic database migrations](https://hub.nuxt.com/docs/features/database#database-migrations) in development & when deploying
-- User interface made with [Nuxt UI](https://ui.nuxt.com)
-- Embed [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview/) in the [Nuxt DevTools](https://devtools.nuxt.com)
-- Cache invalidation and Optimistic UI with [Pinia Colada](https://pinia-colada.esm.dev)
+## Teknolojiler
 
-## Live demo
+- **Frontend**: Nuxt 3, Vue 3, Nuxt UI
+- **Backend**: Nuxt 3 (Server-side)
+- **Veritabanı**: PostgreSQL
+- **ORM**: Drizzle ORM
+- **Kimlik Doğrulama**: Nuxt Auth Utils
 
-https://todos.nuxt.dev
+## Kurulum
 
-https://github.com/atinux/atidone/assets/904724/5f3bee55-dbae-4329-8057-7d0e16e92f81
-
-To see an example using Passkeys (WebAuthn) for authentication, checkout [todo-passkeys](https://github.com/atinux/todo-passkeys).
-
-## Setup
-
-Make sure to install the dependencies using [pnpm](https://pnpm.io/):
-
-```bash
-pnpm i
-```
-
-Create a [GitHub Oauth Application](https://github.com/settings/applications/new) with:
-- Homepage url: `http://localhost:3000`
-- Callback url: `http://localhost:3000/api/auth/github`
-
-Add the variables in the `.env` file:
+Bağımlılıkları yüklemek için [pnpm](https://pnpm.io/) kullanın:
 
 ```bash
-NUXT_OAUTH_GITHUB_CLIENT_ID="my-github-oauth-app-id"
-NUXT_OAUTH_GITHUB_CLIENT_SECRET="my-github-oauth-app-secret"
+pnpm install
 ```
 
-To create sealed sessions, you also need to add `NUXT_SESSION_PASSWORD` in the `.env` with at least 32 characters:
+`.env` dosyasında aşağıdaki değişkenleri tanımlayın:
 
 ```bash
-NUXT_SESSION_PASSWORD="your-super-long-secret-for-session-encryption"
+# Veritabanı Bağlantısı
+DATABASE_URL="postgresql://kullanici:sifre@localhost:5432/koordinasyon_agi"
+
+# OAuth Ayarları
+NUXT_OAUTH_GOOGLE_CLIENT_ID="your-google-oauth-app-id"
+NUXT_OAUTH_GOOGLE_CLIENT_SECRET="your-google-oauth-app-secret"
 ```
 
-## Development
+## Geliştirme
 
-Start the development server on http://localhost:3000
+Geliştirme sunucusunu başlatmak için:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
-In the Nuxt DevTools, you can see your tables by clicking on the Hub Database tab:
+Uygulama http://localhost:3000 adresinde çalışacaktır.
 
-https://github.com/atinux/atidone/assets/904724/7ece3f10-aa6f-43d8-a941-7ca549bc208b
+## Veritabanı Migrasyonları
 
-## Deploy
-
-You can deploy this project on your Cloudflare account for free and with zero configuration using [NuxtHub](https://hub.nuxt.com).
+Yeni bir migrasyon oluşturmak için:
 
 ```bash
-npx nuxthub deploy
+pnpm db:generate
 ```
 
-It's also possible to leverage Cloudflare Pages CI for deploying, learn more about the different options on https://hub.nuxt.com/docs/getting-started/deploy
+Migrasyonları uygulamak için:
 
-## Remote Storage
-
-Once you deployed your project, you can connect to your remote database locally running:
-  
 ```bash
-pnpm dev --remote
+pnpm db:migrate
 ```
 
-Learn more about remote storage on https://hub.nuxt.com/docs/getting-started/remote-storage
+## Rol ve Yetkiler
 
-## License
+Uygulamada 4 temel rol bulunmaktadır:
 
-[MIT License](./LICENSE)
+1. **Admin**: Sistem yöneticisi
+2. **Koordinatör**: İhtiyaç ve destek eşleştirmelerini yöneten
+3. **Destekçi**: İhtiyaç sahiplerine destek veren
+4. **Başvuru Sahibi**: İhtiyaç talebinde bulunan
+
+## İş Akışı
+
+1. Destekçiler sisteme kayıt olur ve destek vermek istedikleri alanları belirler
+2. İhtiyaç sahipleri veya yakınları ihtiyaç talebinde bulunur
+3. Koordinatörler gelen talepleri inceler ve uygun destekçilerle eşleştirir
+4. Destekçiler süreç aşamalarını takip eder ve güncellemeleri sisteme işler
+5. Süreç tamamlandığında iş arşive alınır
+
+## Katkıda Bulunma
+
+1. Bu depoyu fork edin
+2. Yeni bir branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
+4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
+
+## Lisans
+
+[MIT Lisansı](./LICENSE)

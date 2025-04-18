@@ -1,5 +1,4 @@
 import type { H3Event } from 'h3'
-import { sanitizeUser } from '~~/server/utils/auth'
 
 export default defineOAuthGoogleEventHandler({
   async onSuccess(event: H3Event, { user }) {
